@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+        h2 {
+            text-align: center;
+            
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #e9e9e9;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-container h2 {
+            margin-top: 0;
+            color: #007BFF;
+        }
+
+        .form-container label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-container input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+
+        .form-container button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 >ফর্ম জমা সফল হয়েছে'</h1>
+    <h2 id="applicationNo"></h2>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>বিভাগ-বিষয়</th>
+                <th>Whatsapp Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be populated here -->
+        </tbody>
+    </table>
+    
+    <script>
+        function getQueryParams() {
+            var params = {};
+            var queryString = window.location.search.substring(1);
+            var queryArray = queryString.split('&');
+            for (var i = 0; i < queryArray.length; i++) {
+                var pair = queryArray[i].split('=');
+                params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+            }
+            return params;
+        }
+
+        window.onload = function() {
+            var params = getQueryParams();
+            filterData(params.category, params.subjects);
+            document.getElementById('applicationNo').innerHTML=`অ্যাপ্লিকেশন নং: ${params.applicationNo}`;
+        }
+
+        // Sample JSON data
+        const jsonData = {
+            "ক": {
+                "Option 1": "",
+                "Option 2": "",
+                "Option 3": "",
+                "Option 4": "",
+                "Option 5": "",
+                "Option 6": "",
+                "Option 7": ""
+            },
+            "খ": {
+                "Option 1": "",
+                "Option 2": "",
+                "Option 3": "",
+                "Option 4": "",
+                "Option 5": "",
+                "Option 6": "",
+                "Option 7": ""
+            },
+            "গ": {
+                "Option 1": "",
+                "Option 2": "",
+                "Option 3": "",
+                "Option 4": "",
+                "Option 5": "",
+                "Option 6": "",
+                "Option 7": ""
+            }
+        };
+
+        // Function to populate the table
+        function populateTable(data) {
+            const tableBody = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = '';
+
+            for (const [category, subjects] of Object.entries(data)) {
+                for (const [subject, value] of Object.entries(subjects)) {
+                    const row = document.createElement('tr');
+                    const cellCategory = document.createElement('td');
+                    var tempText =  category+" বিভাগ - "+subject.replace('Option 1','রবীন্দ্রসঙ্গীত').replace('Option 2','নজরুল গীতি').replace('Option 3','বাংলা ছড়ার গান/ বাংলা আধুনিক গান').replace('Option 4','আবৃত্তি').replace('Option 5','একক নৃত্য')
+                    cellCategory.textContent =tempText;
+                    row.appendChild(cellCategory);
+
+                    const cellValue = document.createElement('td');
+                    cellValue.textContent = value;
+                    row.appendChild(cellValue);
+
+                    tableBody.appendChild(row);
+                }
+            }
+
+            // Show no data message if no rows
+            if (tableBody.childElementCount === 0) {
+                const noDataRow = document.createElement('tr');
+                noDataRow.innerHTML = '<td colspan="2" style="text-align: center; color: #999;">No data to display</td>';
+                tableBody.appendChild(noDataRow);
+            }
+        }
+
+        // Function to filter and display data based on inputs
+        function filterData(categoryInput, subjectsInput) {
+            const subjectsArray = subjectsInput.split(',').map(subject => subject.trim());
+            const filteredData = {};
+
+            if (categoryInput && subjectsArray.length > 0) {
+                for (const [category, subjects] of Object.entries(jsonData)) {
+                    if (category === categoryInput) {
+                        const filteredSubjects = {};
+                        for (const [subject, value] of Object.entries(subjects)) {
+                            if (subjectsArray.includes(subject)) {
+                                filteredSubjects[subject] = value;
+                            }
+                        }
+                        if (Object.keys(filteredSubjects).length > 0) {
+                            filteredData[category] = filteredSubjects;
+                        }
+                    }
+                }
+            }
+
+            populateTable(filteredData);
+        }
+    </script>
+</body>
+</html>

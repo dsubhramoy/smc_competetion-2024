@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        .form-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: calc(100% - 16px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .form-group input[type="date"] {
+            font-size: 14px;
+            
+        }
+        .form-group input[type="file"] {
+            padding: 0;
+        }
+        .form-group button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .form-group .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .form-group .checkbox-group input {
+            margin-right: 5px;
+            margin-bottom: 0px;
+            size: 16PX;
+            
+        }
+        .form-group .checkbox-group label {
+            margin-right: 0px;
+            font-size: 16px;
+            color: #333;
+        }
+        .form-group small {
+            color: #888;
+        }
+        .form-group input[readonly] {
+            background-color: #e9ecef;
+        }
+        .form-group textarea[readonly] {
+            background-color: #e9ecef;
+            resize: none;
+        }
+        #overlay {
+            position: fixed;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            cursor: not-allowed;
+        }
+        /* Style for the loading spinner (optional) */
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
+    </style>
+</head>
+<body>
+    <h1>অনলাইন ফর্ম</h1>
+    <div class="form-container">
+        <form id="userForm">
+            <div class="form-group">
+                <label for="name">প্রতিযোগীর নাম:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="parentsName">পিতা/অবিভাবকের নাম:</label>
+                <input type="text" id="parentsName" name="parentsName" required>
+            </div>
+            <div class="form-group">
+                <label for="address">ঠিকানা:</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">জন্ম তারিখ:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="text" id="age" name="age" readonly>
+            </div>
+            <div class="form-group">
+                <label for="fileBirthCertificate">প্রমান পত্র (Birth Certificate) আপলোড করুন:</label>
+                <input type="file" id="fileBirthCertificate"  name="fileBirthCertificate" accept=".pdf,.jpg,.png" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile">মোবাইল নাম্বার:</label>
+                <input type="tel" id="mobile" name="mobile" pattern="\d{10}" placeholder="" required>
+                <small>১০ সংখ্যার মোবাইল নাম্বার.</small>
+            </div>
+            <div class="form-group">
+                <label for="whatsapp">হোয়াটসঅ্যাপ নাম্বার:</label>
+                <input type="tel" id="whatsapp" name="whatsapp" pattern="\d{10}" placeholder="" required>
+                <small>১০ সংখ্যার মোবাইল নাম্বার.</small>
+            </div>
+            <div class="form-group">
+                <label for="category">বিভাগ:</label>
+                <input type="text" id="category" name="category" readonly>
+            </div>
+            <div class="form-group">
+                <label>বিষয়:</label>
+                <div class="checkbox-group" onchange="getAmount()">
+                    <input type="checkbox" id="subject1" name="subject" value="Option 1">
+                    <label for="subject1">রবীন্দ্রসঙ্গীত</label>
+                    <input type="checkbox" id="subject2" name="subject" value="Option 2">
+                    <label for="subject2">নজরুল গীতি</label>
+                    <input type="checkbox" id="subject3" name="subject" value="Option 3">
+                    <label for="subject3">বাংলা ছড়ার গান/ বাংলা আধুনিক গান</label>
+                    <input type="checkbox" id="subject4" name="subject" value="Option 4">
+                    <label for="subject4">আবৃত্তি</label>
+                    <input type="checkbox" id="subject5" name="subject" value="Option 5">
+                    <label for="subject5">একক নৃত্য</label>
+                    <input type="checkbox" id="subject6" name="subject" value="Option 6">
+                    <label for="subject6">তবলা</label>
+                    <input type="checkbox" id="subject7" name="subject" value="Option 7">
+                    <label for="subject7">অঙ্কন</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="info"><p id="amount">প্রবেশ মূল্য: </p></label>
+                <textarea id="info" name="info" rows="10" readonly>
+প্রতিযোগিতার বিষয় প্রতি প্রবেশ মূল্য ৭০ (সত্তর) টাকা। তিনটি বিষয় একত্রে ২০০ টাকা।
+
+পেমেন্ট করুন Gpay/UPI ID তে।
+
+UPI ID: abhishek.dey.ece@okaxis
+Gpay number: 9434661104
+
+সফল পেমেন্টের স্ক্রিনশট আপলোড করতে হবে।</textarea>
+
+            </div>
+            <div class="form-group">
+                <label for="filePayment">পেমেন্ট স্ক্রিনশট আপলোড করুন :</label>
+                <input type="file" id="filePayment" name="filePayment" accept=".jpg,.png,.pdf" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div id="overlay">
+        <div class="loader"></div>
+    </div>
+
+    <script>
+        function getAmount(){
+            var checkboxno = document.querySelectorAll('input[name="subject"]:checked');
+            var amount = checkboxno.length*70;
+            if(amount>200){
+                amount=200;
+            }
+            document.getElementById('amount').innerHTML= 'প্রবেশ মূল্য: '+amount+' টাকা।'
+        }
+        function calculateAge(dob) {
+            const today = new Date('2024-09-01');
+            let ageYears = today.getFullYear() - dob.getFullYear();
+            let ageMonths = today.getMonth() - dob.getMonth();
+            let ageDays = today.getDate() - dob.getDate();
+
+            if (ageDays < 0) {
+                ageMonths--;
+                const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+                ageDays += lastMonth.getDate();
+            }
+
+            if (ageMonths < 0) {
+                ageYears--;
+                ageMonths += 12;
+            }
+
+            return {
+                years: ageYears,
+                months: ageMonths,
+                days: ageDays
+            };
+        }
+
+        document.getElementById('dob').addEventListener('change', function() {
+            const dob = new Date(this.value);
+            const age = calculateAge(dob);
+            document.getElementById('age').value = `${age.years} years ${age.months} months ${age.days} days`;
+
+            let category;
+            if (age.years >= 18) {
+                category = 'গ';
+            } else if (age.years >= 12) {
+                category = 'খ';
+            } else {
+                category = 'ক';
+            }
+            document.getElementById('category').value = category;
+        });
+
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('overlay').style.display = 'block';
+            const applicationNo = 'SMC'+Date.now();
+            const mobile = document.getElementById('mobile').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const subjectCheckboxes = document.querySelectorAll('input[name="subject"]:checked');
+            
+            // Mobile and WhatsApp validation
+            const phonePattern = /^\d{10}$/;
+            if (!phonePattern.test(mobile)) {
+                alert('Please enter a valid 10-digit mobile number.');
+                event.preventDefault();
+                return;
+            }
+            if (!phonePattern.test(whatsapp)) {
+                alert('Please enter a valid 10-digit WhatsApp number.');
+                event.preventDefault();
+                return;
+            }
+            
+            // Checkbox validation
+            if (subjectCheckboxes.length > 3) {
+                alert('You can select a maximum of 3 subjects.');
+                event.preventDefault();
+                return;
+            }
+            // First, upload images
+            function uploadImage(fileInputId,folder) {
+                return new Promise((resolve, reject) => {
+                    var fileInput = document.getElementById(fileInputId);
+                    if (fileInput.files.length > 0) {
+                        var file = fileInput.files[0];
+                        var reader = new FileReader();
+                        reader.onloadend = function() {
+                            var base64String = reader.result.split(',')[1]; // Extract Base64 string
+                            fetch('https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbyGnbMNe236NF0K1DyldkuEr4HlUt8vZlxXi4mzuZjy47eLKwO4m4cLTBmBY6MtBFwS/exec', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ folderName: folder,file: base64String, fileName: file.name })
+                            })
+                            .then(response => response.json())
+                            .then(data => resolve(data.url))
+                            .catch(error => reject(error));
+                        };
+                        reader.readAsDataURL(file); // Read file as Data URL
+                    } else {
+                        resolve(''); // No file selected, resolve with empty string
+                    }
+                });
+            }
+
+            // Upload images
+            Promise.all([
+                uploadImage('filePayment','ageproof'),
+                uploadImage('fileBirthCertificate','')
+            ]).then(([file1Url, file2Url]) => {
+                
+                // Once images are uploaded, submit the rest of the form data
+                const formData = {
+                        name: document.getElementById('name').value,
+                        parentsName: document.getElementById('parentsName').value,
+                        address: document.getElementById('address').value,
+                        dob: document.getElementById('dob').value,
+                        age: document.getElementById('age').value,
+                        mobile: document.getElementById('mobile').value,
+                        whatsapp: document.getElementById('whatsapp').value,
+                        category: document.getElementById('category').value,
+                        subjects: Array.from(subjectCheckboxes).map(el => el.value).join(', '),
+                        applicationNum: applicationNo,
+                        imageUrl1: file1Url,
+                        imageUrl2: file2Url
+                    };
+                    console.log(formData);
+                // Submit form data
+                fetch('https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbxMs-kr7w-VG0ADtA_GVzu23lhPLUjIcOpCZWGBQZyW9CG4WhDnq3o4xhfzuJXRW4KOeg/exec', {
+                    method: 'POST',
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result === 'success') {
+                        var successUrl = `success.html?category=${encodeURIComponent(document.getElementById('category').value)}&subjects=${encodeURIComponent(Array.from(subjectCheckboxes).map(el => el.value).join(', '))}&applicationNo=${applicationNo}`;
+                        window.location.href = successUrl;
+                        //alert('Form submitted successfully!');
+                    } else {
+                        alert('Error submitting form: ' + data.message);
+                        document.getElementById('overlay').style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('overlay').style.display = 'none';
+                });
+            }).catch(error => {
+                console.error('Error uploading images:', error);
+                document.getElementById('overlay').style.display = 'none';
+            });
+        });
+    </script>
+    
+</body>
+</html>

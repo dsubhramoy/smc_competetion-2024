@@ -56,6 +56,7 @@
         .category h2 {
             background: #321702;
             color: #fff;
+            border-radius: 8px;
             margin: 0;
             padding: 15px;
             cursor: pointer;
@@ -63,6 +64,24 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        .aform h2 {
+            background: #56be19;
+            color: #fff;
+            text-align: center;
+            min-height: 100px;
+            border-radius: 8px;
+            margin-top: 50px;
+            margin-bottom: 10px;
+            padding: 15px;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        a {
+            text-align: center;
         }
         .category .content {
             padding: 15px;
@@ -77,7 +96,7 @@
             left: 0;
             top: 100%;
             background: #f8f87c;
-            border-top: 1px solid #500303;
+            border-top: 1px solid #c79f0f;
         }
         .rules.show {
             max-height: 2000px; /* Adjust if needed to ensure full expansion */
@@ -95,37 +114,101 @@
         .expand-button:focus {
             outline: none;
         }
+        .maintenance {
+            display: none;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .content {
+            display: none;
+        }
+        .content1 {
+            display: none;
+        }
+
+        .visible {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Online Competition Rules</h1>
+            <h1>সাংস্কৃতিক প্রতিযোগিতা ২০২৪</h1>
+            <h2>সুরলহরী মিউজিক কলেজ, বোহার, পূর্ব বর্ধমান</h2>
         </div>
     </header>
+    
 
     <div class="container">
         <!-- Poster Section -->
         <div class="poster-section">
             <img src="Abi.jpg" alt="Competition Poster">
         </div>
+        <div id="maintenanceMessage" class="maintenance">
+            <h1>অনলাইন ফর্ম জমা নেওয়া এখন বন্ধ আছে।</h1>
+            <p> ফর্ম জমা দেওয়ার শুরু হবে ১৬ ই আগস্ট, ২০২৪ থেকে এবং চলবে ১ লা সেপ্টেম্বর, ২০২৪ পর্যন্ত।</p>
+        </div>
+        
+
+        <div class="content aform" id="content">
+            <h2 onclick="openForm()">
+                অনলাইন ফর্মের মাধ্যমে নাম নথিভুক্ত করুন
+            </h2>
+        </div>
+
+
 
         <!-- General Rules Section -->
         <div class="general-rules">
-            <h2>General Rules</h2>
-            <p>Welcome to the Online Competition! Please review the general rules below:</p>
-            <ul>
-                <li>All entries must be submitted by the specified deadline.</li>
-                <li>Each participant may submit only one entry per category.</li>
-                <li>Entries must adhere to the guidelines provided for each category.</li>
-                <li>Judging criteria include creativity, adherence to rules, and overall presentation.</li>
-                <li>Decisions by the judges are final and cannot be contested.</li>
-                <li>If you have any questions, please contact us at [contact email].</li>
-            </ul>
+            <h2>নিয়মাবলী</h2>
+            <p></p>
+            <ol>
+                <li>প্রতিযোগিতাটি ২টি পর্বে হবে। প্রাথমিক পর্ব অনলাইন মাধ্যম এবং চূড়ান্ত পর্ব অফলাইন মাধ্যম।</li>
+                <li><b>প্রাথমিক পর্ব:(অনলাইন মাধ্যম)</b></li>
+                <ul>
+                    <li>সঙ্গীত, আবৃত্তি ও নৃত্য প্রতিযোগিতা প্রাথমিক পর্বে হবে।</li>
+                    <li>একক সংগীতের ক্ষেত্রে সর্বাধিক দুটো যন্ত্রানুসঙ্গ (হারমোনিয়াম/ তানপুরা/তবলা) ব্যবহার করে একটি গান ভিডিও করে পাঠাতে হবে।
+                    <li>নৃত্যের ক্ষেত্রে অনধিক পাঁচ মিনিটের ভিডিও পাঠাতে হবে।</li>
+                    <li>আবৃত্তিকারদের ক্ষেত্রে যন্ত্রানুসঙ্গ ছাড়া একটি কবিতা ভিডিও করে পাঠাতে হবে।</li>
+                    <li>ভিডিওটি হতে হবে মাইক্রোফোন ও কোনরকম এডিটিং ছাড়া অর্থাৎ শুধুমাত্র লাইভ ভিডিও রেকর্ডিং।</li>
+                    <li>ভিডিওটির শুরুতেই প্রত্যেককে নিজের নাম, বিষয় ও বিভাগ উল্লেখ করতে হবে।</li>
+                    <li>ফর্মের এর শেষে প্রত্যেক বিভাগ ও বিষয়ের জন্য আলাদা whatsapp link দেওয়া আছে। প্রত্যেককে সংশ্লিষ্ট whatsapp link এ যুক্ত হয়ে ভিডিও পাঠাতে হবে। </li>
+                    <li>ভিডিও পাঠানোর তারিখ <b>১৬ ই আগস্ট, ২০২৪ থেকে ১ লা সেপ্টেম্বর, ২০২৪ এর মধ্যে।</b></li>
+                    <li>প্রাথমিক পর্বের ফলাফল ৮ ই সেপ্টেম্বর, ২০২৪ সংশ্লিষ্ট whatsapp group এ ঘোষণা করা হবে।</li>
+                </ul>
+
+                <li><b>চূড়ান্ত পর্ব:(অফলাইন মাধ্যম)</b></li>
+                <ul>
+                    <li>চূড়ান্ত পর্বের প্রতিযোগিতা হবে <b>১৫ ই সেপ্টেম্বর, ২০২৪</b></li>
+                    <li>সঙ্গীত, আবৃত্তি ও নৃত্য প্রতিযোগিতার প্রাথমিক পর্বের ফলাফল অনুযায়ী প্রথম ১০ জন স্থানাধিকারি চূড়ান্ত পর্বের জন্য মনোনীত হবে।</li>
+                    <li>তবলা ও অঙ্কন প্রতিযোগিতা শুধুমাত্র অফলাইন মাধ্যমেই হবে। প্রবেশ মূল্য সহ অনলাইন ফর্মের মাধ্যমে নাম নথিভুক্ত করার শেষ তারিখ - <b>১ লা সেপ্টেম্বর, ২০২৪</b>।</li>
+                </ul>  
+
+                <li>কোন বিষয়ের কোন বিভাগে প্রতিযোগীর সংখ্যা যদি ন্যূনতম ১০ না হয়, সেক্ষেত্রে শুধুমাত্র সেই বিভাগটির প্রতিযোগিতা বন্ধ ঘোষিত হবে এবং প্রতিযোগীর প্রবেশ মূল্য ফেরত দেওয়া হবে। কোন বিভাগ বাতিল হলো কিনা সেটা আবেদনপত্র জমা নেওয়ার শেষ তারিখের পর ঘোষনা করা হবে</li> 
+                <li>বয়স যোগ্যতার প্রমান পত্র (Birth Certificate) ফর্মের মাধ্যমেই আবেদন পত্রের সাথে জমা দিতে হবে।</li>
+                <li>২০২৪ সালের ১ লা সেপ্টেম্বর (০১.০৯.২০২৪) বয়স নির্ধারণের জন্য ধার্য হবে।</li>
+                <li>কোন প্রতিযোগী সর্বাধিক ৩ টি বিষয়ে (৭ টির মধ্যে) অংশগ্রহণ করতে পারবে।</li>
+                <li>চূড়ান্ত পর্বে সঙ্গীত প্রতিযোগীকে সঙ্গতকার আনতে হবে।</li>
+                <li>চূড়ান্ত পর্বে অঙ্কন প্রতিযোগীকে আঁকার সমস্ত সরঞ্জাম আনতে হবে (আর্ট পেপার ছাড়া)।</li>
+                <li>চূড়ান্ত পর্বে নৃত্য প্রতিযোগীকে ৩০ মিনিট পূর্বে গানের চিপ বা পেনড্রাইভ জমা দিতে হবে।</li>
+                <li>বিচারক মন্ডলীর সিদ্ধান্ত চূড়ান্ত বলে বিবেচিত হবে।</li>
+                <li>চূড়ান্ত পর্বে অঙ্কন প্রতিযোগিতা শুরু হবে দুপুর ১২ টা থেকে এবং তবলা প্রতিযোগিতা শুরু হবে দুপুর ২ টো থেকে।</li>
+                <li>সঙ্গীত প্রতিযোগিতায় প্রথম স্থানাধিকারী প্রতিযোগীর একটি করে গান সুরলহরী মিউজিক কলেজ স্টুডিও থেকে বিনামূল্যে রেকর্ড করা হবে এবং পরবর্তীকালে মিউজিক কলেজের অফিসিয়াল ফেসবুক পেজ ও ইউটিউব চ্যানেল থেকে শেয়ার করা হবে।</li>
+                <li>সফল প্রতিযোগীদের সুরলহরী মিউজিক কলেজের পক্ষ থেকে পুরস্কৃত করা হবে।</li>
+            </ol>
         </div>
+        
 
         <!-- Competition Categories -->
-        <div class="content">
+        <div class="content" id="content1">
             <!-- Category 1 -->
             <div class="category">
                 <h2 onclick="toggleCategory('category1')">
@@ -452,6 +535,9 @@
                 button.style.backgroundColor= "#F61111";
             }
         }
+        function openForm(){
+            window.open('./form.html');
+        }
 
         function toggleRules(id) {
             const rules = document.getElementById(id);
@@ -470,6 +556,27 @@
         function capitalize(str) {
             return str.charAt(0).toUpperCase() + str.slice(1);
         }
+    </script>
+    <script>
+        function checkMaintenance() {
+            const maintenanceStart = new Date('2024-07-20'); // Start date of maintenance (YYYY-MM-DD)
+            const maintenanceEnd = new Date('2024-07-27'); // End date of maintenance (YYYY-MM-DD)
+            const today = new Date();
+            document.getElementById('content1').style.display="none";
+            // Adjusting the time to the beginning of the day for comparison
+            today.setHours(0, 0, 0, 0);
+            maintenanceStart.setHours(0, 0, 0, 0);
+            maintenanceEnd.setHours(0, 0, 0, 0);
+
+            if (today >= maintenanceStart && today <= maintenanceEnd) {
+                document.getElementById('maintenanceMessage').classList.add('visible');
+            } else {
+                document.getElementById('content').classList.add('visible');
+            }
+        }
+
+        // Run the maintenance check on page load
+        window.onload = checkMaintenance;
     </script>
 </body>
 </html>
