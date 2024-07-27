@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competition Rules</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #dd800d;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .poster-section {
+            background: #2e0303;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .poster-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .general-rules {
+            background: #b0e10c;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .general-rules h2 {
+            margin-top: 0;
+        }
+        .category {
+            background: #eee6a6;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            position: relative;
+        }
+        .category h2 {
+            background: #321702;
+            color: #fff;
+            margin: 0;
+            padding: 15px;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .category .content {
+            padding: 15px;
+            position: relative;
+        }
+        .rules {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 100%;
+            background: #f8f87c;
+            border-top: 1px solid #500303;
+        }
+        .rules.show {
+            max-height: 2000px; /* Adjust if needed to ensure full expansion */
+            position: relative;
+        }
+        .expand-button {
+            background: #105c0a;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+        .expand-button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Online Competition Rules</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Poster Section -->
+        <div class="poster-section">
+            <img src="Abi.jpg" alt="Competition Poster">
+        </div>
+
+        <!-- General Rules Section -->
+        <div class="general-rules">
+            <h2>General Rules</h2>
+            <p>Welcome to the Online Competition! Please review the general rules below:</p>
+            <ul>
+                <li>All entries must be submitted by the specified deadline.</li>
+                <li>Each participant may submit only one entry per category.</li>
+                <li>Entries must adhere to the guidelines provided for each category.</li>
+                <li>Judging criteria include creativity, adherence to rules, and overall presentation.</li>
+                <li>Decisions by the judges are final and cannot be contested.</li>
+                <li>If you have any questions, please contact us at [contact email].</li>
+            </ul>
+        </div>
+
+        <!-- Competition Categories -->
+        <div class="content">
+            <!-- Category 1 -->
+            <div class="category">
+                <h2 onclick="toggleCategory('category1')">
+                    Category 1
+                    <button class="expand-button" id="toggleCategory1">Expand</button>
+                </h2>
+                <div id="category1" class="content rules">
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup1_1')">
+                            Age Group 1
+                            <button class="expand-button" id="toggleAgeGroup1_1">Expand</button>
+                        </h3>
+                        <div id="ageGroup1_1" class="content rules">
+                            <p>Rule 1 for Age Group 1</p>
+                            <p>Rule 2 for Age Group 1</p>
+                            <p>Rule 3 for Age Group 1</p>
+                        </div>
+                    </div>
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup1_2')">
+                            Age Group 2
+                            <button class="expand-button" id="toggleAgeGroup1_2">Expand</button>
+                        </h3>
+                        <div id="ageGroup1_2" class="content rules">
+                            <p>Rule 1 for Age Group 2</p>
+                            <p>Rule 2 for Age Group 2</p>
+                            <p>Rule 3 for Age Group 2</p>
+                        </div>
+                    </div>
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup1_3')">
+                            Age Group 3
+                            <button class="expand-button" id="toggleAgeGroup1_3">Expand</button>
+                        </h3>
+                        <div id="ageGroup1_3" class="content rules">
+                            <p>Rule 1 for Age Group 3</p>
+                            <p>Rule 2 for Age Group 3</p>
+                            <p>Rule 3 for Age Group 3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="category">
+                <h2 onclick="toggleCategory('category2')">
+                    Category 2
+                    <button class="expand-button" id="toggleCategory2">Expand</button>
+                </h2>
+                <div id="category2" class="content rules">
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup2_1')">
+                            Age Group 1
+                            <button class="expand-button" id="toggleAgeGroup2_1">Expand</button>
+                        </h3>
+                        <div id="ageGroup2_1" class="content rules">
+                            <p>Rule 1 for Age Group 1</p>
+                            <p>Rule 2 for Age Group 1</p>
+                            <p>Rule 3 for Age Group 1</p>
+                        </div>
+                    </div>
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup2_2')">
+                            Age Group 2
+                            <button class="expand-button" id="toggleAgeGroup2_2">Expand</button>
+                        </h3>
+                        <div id="ageGroup2_2" class="content rules">
+                            <p>Rule 1 for Age Group 2</p>
+                            <p>Rule 2 for Age Group 2</p>
+                            <p>Rule 3 for Age Group 2</p>
+                        </div>
+                    </div>
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup2_3')">
+                            Age Group 3
+                            <button class="expand-button" id="toggleAgeGroup2_3">Expand</button>
+                        </h3>
+                        <div id="ageGroup2_3" class="content rules">
+                            <p>Rule 1 for Age Group 3</p>
+                            <p>Rule 2 for Age Group 3</p>
+                            <p>Rule 3 for Age Group 3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="category">
+                <h2 onclick="toggleCategory('category3')">
+                    Category 3
+                    <button class="expand-button" id="toggleCategory3">Expand</button>
+                </h2>
+                <div id="category3" class="content rules">
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup3_1')">
+                            Age Group 1
+                            <button class="expand-button" id="toggleAgeGroup3_1">Expand</button>
+                        </h3>
+                        <div id="ageGroup3_1" class="content rules">
+                            <p>Rule 1 for Age Group 1</p>
+                            <p>Rule 2 for Age Group 1</p>
+                            <p>Rule 3 for Age Group 1</p>
+                        </div>
+                    </div>
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup3_2')">
+                            Age Group 2
+                            <button class="expand-button" id="toggleAgeGroup3_2">Expand</button>
+                        </h3>
+                        <div id="ageGroup3_2" class="content rules">
+                            <p>Rule 1 for Age Group 2</p>
+                            <p>Rule 2 for Age Group 2</p>
+                            <p>Rule 3 for Age Group 2</p>
+                        </div>
+                    </div>
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup3_3')">
+                            Age Group 3
+                            <button class="expand-button" id="toggleAgeGroup3_3">Expand</button>
+                        </h3>
+                        <div id="ageGroup3_3" class="content rules">
+                            <p>Rule 1 for Age Group 3</p>
+                            <p>Rule 2 for Age Group 3</p>
+                            <p>Rule 3 for Age Group 3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 4 -->
+            <div class="category">
+                <h2 onclick="toggleCategory('category4')">
+                    Category 4
+                    <button class="expand-button" id="toggleCategory4">Expand</button>
+                </h2>
+                <div id="category4" class="content rules">
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup4_1')">
+                            Age Group 1
+                            <button class="expand-button" id="toggleAgeGroup4_1">Expand</button>
+                        </h3>
+                        <div id="ageGroup4_1" class="content rules">
+                            <p>Rule 1 for Age Group 1</p>
+                            <p>Rule 2 for Age Group 1</p>
+                            <p>Rule 3 for Age Group 1</p>
+                        </div>
+                    </div>
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup4_2')">
+                            Age Group 2
+                            <button class="expand-button" id="toggleAgeGroup4_2">Expand</button>
+                        </h3>
+                        <div id="ageGroup4_2" class="content rules">
+                            <p>Rule 1 for Age Group 2</p>
+                            <p>Rule 2 for Age Group 2</p>
+                            <p>Rule 3 for Age Group 2</p>
+                        </div>
+                    </div>
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup4_3')">
+                            Age Group 3
+                            <button class="expand-button" id="toggleAgeGroup4_3">Expand</button>
+                        </h3>
+                        <div id="ageGroup4_3" class="content rules">
+                            <p>Rule 1 for Age Group 3</p>
+                            <p>Rule 2 for Age Group 3</p>
+                            <p>Rule 3 for Age Group 3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Category 5 -->
+            <div class="category">
+                <h2 onclick="toggleCategory('category5')">
+                    Category 5
+                    <button class="expand-button" id="toggleCategory5">Expand</button>
+                </h2>
+                <div id="category5" class="content rules">
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup5_1')">
+                            Age Group 1
+                            <button class="expand-button" id="toggleAgeGroup5_1">Expand</button>
+                        </h3>
+                        <div id="ageGroup5_1" class="content rules">
+                            <p>Rule 1 for Age Group 1</p>
+                            <p>Rule 2 for Age Group 1</p>
+                            <p>Rule 3 for Age Group 1</p>
+                        </div>
+                    </div>
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup5_2')">
+                            Age Group 2
+                            <button class="expand-button" id="toggleAgeGroup5_2">Expand</button>
+                        </h3>
+                        <div id="ageGroup5_2" class="content rules">
+                            <p>Rule 1 for Age Group 2</p>
+                            <p>Rule 2 for Age Group 2</p>
+                            <p>Rule 3 for Age Group 2</p>
+                        </div>
+                    </div>
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup5_3')">
+                            Age Group 3
+                            <button class="expand-button" id="toggleAgeGroup5_3">Expand</button>
+                        </h3>
+                        <div id="ageGroup5_3" class="content rules">
+                            <p>Rule 1 for Age Group 3</p>
+                            <p>Rule 2 for Age Group 3</p>
+                            <p>Rule 3 for Age Group 3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Category 6 -->
+            <div class="category">
+                <h2 onclick="toggleCategory('category6')">
+                    Category 6
+                    <button class="expand-button" id="togglecategory6">Expand</button>
+                </h2>
+                <div id="category6" class="content rules">
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup6_1')">
+                            Age Group 1
+                            <button class="expand-button" id="toggleAgeGroup6_1">Expand</button>
+                        </h3>
+                        <div id="ageGroup6_1" class="content rules">
+                            <p>Rule 1 for Age Group 1</p>
+                            <p>Rule 2 for Age Group 1</p>
+                            <p>Rule 3 for Age Group 1</p>
+                        </div>
+                    </div>
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup6_2')">
+                            Age Group 2
+                            <button class="expand-button" id="toggleAgeGroup6_2">Expand</button>
+                        </h3>
+                        <div id="ageGroup6_2" class="content rules">
+                            <p>Rule 1 for Age Group 2</p>
+                            <p>Rule 2 for Age Group 2</p>
+                            <p>Rule 3 for Age Group 2</p>
+                        </div>
+                    </div>
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('ageGroup6_3')">
+                            Age Group 3
+                            <button class="expand-button" id="toggleAgeGroup6_3">Expand</button>
+                        </h3>
+                        <div id="ageGroup6_3" class="content rules">
+                            <p>Rule 1 for Age Group 3</p>
+                            <p>Rule 2 for Age Group 3</p>
+                            <p>Rule 3 for Age Group 3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Category 7 -->
+            <div class="category">
+                <h2 onclick="toggleCategory('category7')">
+                    Category 7
+                    <button class="expand-button" id="togglecategory7">Expand</button>
+                </h2>
+                <div id="category7" class="content rules">
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('AgeGroup7_1')">
+                            Age Group 1
+                            <button class="expand-button" id="toggleAgeGroup7_1">Expand</button>
+                        </h3>
+                        <div id="AgeGroup7_1" class="content rules">
+                            <p>Rule 1 for Age Group 1</p>
+                            <p>Rule 2 for Age Group 1</p>
+                            <p>Rule 3 for Age Group 1</p>
+                        </div>
+                    </div>
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('AgeGroup7_2')">
+                            Age Group 2
+                            <button class="expand-button" id="toggleAgeGroup7_2">Expand</button>
+                        </h3>
+                        <div id="AgeGroup7_2" class="content rules">
+                            <p>Rule 1 for Age Group 2</p>
+                            <p>Rule 2 for Age Group 2</p>
+                            <p>Rule 3 for Age Group 2</p>
+                        </div>
+                    </div>
+                    <div class="age-group">
+                        <h3 onclick="toggleRules('AgeGroup7_3')">
+                            Age Group 3
+                            <button class="expand-button" id="toggleAgeGroup7_3">Expand</button>
+                        </h3>
+                        <div id="AgeGroup7_3" class="content rules">
+                            <p>Rule 1 for Age Group 3</p>
+                            <p>Rule 2 for Age Group 3</p>
+                            <p>Rule 3 for Age Group 3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCategory(id) {
+            const category = document.getElementById(id);
+            const button = document.getElementById(`toggle${capitalize(id)}`);
+            if (category.classList.contains('show')) {
+                category.classList.remove('show');
+                button.textContent = 'Expand';
+                button.style.backgroundColor= "#105c0a";
+            } else {
+                // Hide all other categories
+                document.querySelectorAll('.category .rules').forEach((content) => {
+                    if (content.id !== id) {
+                        content.classList.remove('show');
+                        const relatedButton = document.getElementById(`toggle${capitalize(content.id)}`);
+                        if (relatedButton) {
+                            relatedButton.textContent = 'Expand';
+                            relatedButton.style.backgroundColor= "#105c0a";
+                        }
+                    }
+                });
+                // Show the selected category
+                category.classList.add('show');
+                button.textContent = 'Collapse';
+                button.style.backgroundColor= "#F61111";
+            }
+        }
+
+        function toggleRules(id) {
+            const rules = document.getElementById(id);
+            const button = document.getElementById(`toggle${capitalize(id)}`);
+            if (rules.classList.contains('show')) {
+                rules.classList.remove('show');
+                button.textContent = 'Expand';
+                button.style.backgroundColor= "#105c0a";
+            } else {
+                rules.classList.add('show');
+                button.textContent = 'Collapse';
+                button.style.backgroundColor= "#F61111";
+            }
+        }
+
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+    </script>
+</body>
+</html>
