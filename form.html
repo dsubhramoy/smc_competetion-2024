@@ -145,7 +145,7 @@
                 <input type="date" id="dob" name="dob" required>
             </div>
             <div class="form-group">
-                <label for="age">Age:</label>
+                <label for="age">বয়স:</label>
                 <input type="text" id="age" name="age" readonly>
             </div>
             <div class="form-group">
@@ -169,19 +169,19 @@
             <div class="form-group">
                 <label>বিষয়:</label>
                 <div class="checkbox-group" onchange="getAmount()">
-                    <input type="checkbox" id="subject1" name="subject" value="Option 1">
+                    <input type="checkbox" id="subject1" name="subject" value="রবীন্দ্রসঙ্গীত">
                     <label for="subject1">রবীন্দ্রসঙ্গীত</label>
-                    <input type="checkbox" id="subject2" name="subject" value="Option 2">
+                    <input type="checkbox" id="subject2" name="subject" value="নজরুল গীতি">
                     <label for="subject2">নজরুল গীতি</label>
-                    <input type="checkbox" id="subject3" name="subject" value="Option 3">
+                    <input type="checkbox" id="subject3" name="subject" value="বাংলা ছড়ার গান/ বাংলা আধুনিক গান">
                     <label for="subject3">বাংলা ছড়ার গান/ বাংলা আধুনিক গান</label>
-                    <input type="checkbox" id="subject4" name="subject" value="Option 4">
+                    <input type="checkbox" id="subject4" name="subject" value="আবৃত্তি">
                     <label for="subject4">আবৃত্তি</label>
-                    <input type="checkbox" id="subject5" name="subject" value="Option 5">
+                    <input type="checkbox" id="subject5" name="subject" value="একক নৃত্য">
                     <label for="subject5">একক নৃত্য</label>
-                    <input type="checkbox" id="subject6" name="subject" value="Option 6">
+                    <input type="checkbox" id="subject6" name="subject" value="তবলা">
                     <label for="subject6">তবলা</label>
-                    <input type="checkbox" id="subject7" name="subject" value="Option 7">
+                    <input type="checkbox" id="subject7" name="subject" value="অঙ্কন">
                     <label for="subject7">অঙ্কন</label>
                 </div>
             </div>
@@ -247,7 +247,7 @@ Gpay number: 9434661104
         document.getElementById('dob').addEventListener('change', function() {
             const dob = new Date(this.value);
             const age = calculateAge(dob);
-            document.getElementById('age').value = `${age.years} years ${age.months} months ${age.days} days`;
+            document.getElementById('age').value = `${age.years} বছর ${age.months} মাস ${age.days} দিন`;
 
             let category;
             if (age.years >= 18) {
