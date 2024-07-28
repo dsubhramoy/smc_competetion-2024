@@ -120,8 +120,9 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-    </style>
-    
+        .checked-label {
+        color: rgb(8, 152, 18); /* Change this to your desired color */
+        }
     </style>
 </head>
 <body>
@@ -169,19 +170,19 @@
             <div class="form-group">
                 <label>বিষয়:</label>
                 <div class="checkbox-group" onchange="getAmount()">
-                    <input type="checkbox" id="subject1" name="subject" value="রবীন্দ্রসঙ্গীত">
+                    <input type="checkbox" id="subject1" name="subject" value="রবীন্দ্রসঙ্গীত" onchange="changeLabelColor(this)">
                     <label for="subject1">রবীন্দ্রসঙ্গীত</label>
-                    <input type="checkbox" id="subject2" name="subject" value="নজরুল গীতি">
+                    <input type="checkbox" id="subject2" name="subject" value="নজরুল গীতি"  onchange="changeLabelColor(this)">
                     <label for="subject2">নজরুল গীতি</label>
-                    <input type="checkbox" id="subject3" name="subject" value="বাংলা ছড়ার গান/ বাংলা আধুনিক গান">
+                    <input type="checkbox" id="subject3" name="subject" value="বাংলা ছড়ার গান/ বাংলা আধুনিক গান"  onchange="changeLabelColor(this)">
                     <label for="subject3">বাংলা ছড়ার গান/ বাংলা আধুনিক গান</label>
-                    <input type="checkbox" id="subject4" name="subject" value="আবৃত্তি">
+                    <input type="checkbox" id="subject4" name="subject" value="আবৃত্তি"  onchange="changeLabelColor(this)">
                     <label for="subject4">আবৃত্তি</label>
-                    <input type="checkbox" id="subject5" name="subject" value="একক নৃত্য">
+                    <input type="checkbox" id="subject5" name="subject" value="একক নৃত্য" onchange="changeLabelColor(this)">
                     <label for="subject5">একক নৃত্য</label>
-                    <input type="checkbox" id="subject6" name="subject" value="তবলা">
+                    <input type="checkbox" id="subject6" name="subject" value="তবলা" onchange="changeLabelColor(this)">
                     <label for="subject6">তবলা</label>
-                    <input type="checkbox" id="subject7" name="subject" value="অঙ্কন">
+                    <input type="checkbox" id="subject7" name="subject" value="অঙ্কন"  onchange="changeLabelColor(this)">
                     <label for="subject7">অঙ্কন</label>
                 </div>
             </div>
@@ -212,6 +213,17 @@ Gpay number: 9434661104
     </div>
 
     <script>
+        function changeLabelColor(checkbox) {
+            // Get the label associated with the checkbox
+            const label = document.querySelector(`label[for="${checkbox.id}"]`);
+            
+            // Check if the checkbox is checked
+            if (checkbox.checked) {
+                label.classList.add('checked-label'); // Add CSS class to change color
+            } else {
+                label.classList.remove('checked-label'); // Remove CSS class to revert color
+            }
+        }
         function getAmount(){
             var checkboxno = document.querySelectorAll('input[name="subject"]:checked');
             var amount = checkboxno.length*70;
@@ -296,7 +308,7 @@ Gpay number: 9434661104
                         var reader = new FileReader();
                         reader.onloadend = function() {
                             var base64String = reader.result.split(',')[1]; // Extract Base64 string
-                            fetch('https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbyGnbMNe236NF0K1DyldkuEr4HlUt8vZlxXi4mzuZjy47eLKwO4m4cLTBmBY6MtBFwS/exec', {
+                            fetch('https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbzsoA23QJbQnhVd-RIScIiUKHio61WcIn570q1fDUrgjZ9_iIs7sYLjmX2Xud3cMGzX/exec', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({ folderName: folder,file: base64String, fileName: file.name })
