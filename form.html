@@ -297,7 +297,7 @@ Gpay number: 9434661104
                         var reader = new FileReader();
                         reader.onloadend = function() {
                             var base64String = reader.result.split(',')[1]; // Extract Base64 string
-                            fetch('/https://script.google.com/macros/s/AKfycbyGnbMNe236NF0K1DyldkuEr4HlUt8vZlxXi4mzuZjy47eLKwO4m4cLTBmBY6MtBFwS/exec', {
+                            fetch('https://script.google.com/macros/s/AKfycbzvzxnOIiP49GXlRJhDJFScuhvmondlWdawEwSg3xUmxxitgzljFaWcpcFW0ra4TShF/exec', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json','Origin': window.location.origin },
                                 body: JSON.stringify({ folderName: folder,file: base64String, fileName: file.name })
