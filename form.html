@@ -221,6 +221,7 @@ Gpay number: 9434661104
             document.getElementById('amount').innerHTML= 'প্রবেশ মূল্য: '+amount+' টাকা।'
         }
         function calculateAge(dob) {
+            
             const today = new Date('2024-09-01');
             let ageYears = today.getFullYear() - dob.getFullYear();
             let ageMonths = today.getMonth() - dob.getMonth();
@@ -296,9 +297,9 @@ Gpay number: 9434661104
                         var reader = new FileReader();
                         reader.onloadend = function() {
                             var base64String = reader.result.split(',')[1]; // Extract Base64 string
-                            fetch('https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbyGnbMNe236NF0K1DyldkuEr4HlUt8vZlxXi4mzuZjy47eLKwO4m4cLTBmBY6MtBFwS/exec', {
+                            fetch('/https://script.google.com/macros/s/AKfycbyGnbMNe236NF0K1DyldkuEr4HlUt8vZlxXi4mzuZjy47eLKwO4m4cLTBmBY6MtBFwS/exec', {
                                 method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
+                                headers: { 'Content-Type': 'application/json','Origin': window.location.origin },
                                 body: JSON.stringify({ folderName: folder,file: base64String, fileName: file.name })
                             })
                             .then(response => response.json())
