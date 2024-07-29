@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Competition Rules</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,6 +26,9 @@
         }
         header h1 {
             margin: 0;
+        }
+        h1{
+            color: white;
         }
         .poster-section {
             background: #2e0303;
@@ -136,6 +141,45 @@
         .visible {
             display: block;
         }
+        .invisible {
+            display: none;
+        }
+        .collapsible {
+            background-color: #2e0303;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            width: calc(100% - 20px);
+            margin: 10px auto;
+            border: none;
+            text-align: center; /* Center-align text in buttons */
+            outline: none;
+            font-size: 16px;
+            transition: 0.4s;
+            border-radius: 5px;
+        }
+        .active, .collapsible:hover {
+            background-color: #620606;
+        }
+        .content a:last-child {
+            border-bottom: none;
+        }
+        .content a {
+            display: block;
+            background-color: #ffffff;
+            margin: 10px auto;
+            color: #05911c;
+            text-decoration: none;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            text-align: center; /* Center-align text in links */
+        }
+        .content a i {
+            margin-right: 10px; /* Space between icon and text */
+            color: #25D366; /* WhatsApp green color */
+            text-shadow: 1px 1px 3px #fff; /* White shadow for better visibility */
+            font-size: 20px; /* Size of the icon */
+        }
     </style>
 </head>
 <body>
@@ -149,16 +193,46 @@
 
     <div class="container">
         <!-- Poster Section -->
-        <div class="poster-section">
+        <div class="poster-section invisible">
             <img src="Abi.jpg" alt="Competition Poster">
         </div>
-        <div id="maintenanceMessage" class="maintenance">
+        <div id="maintenanceMessage" class="maintenance invisible">
             <h1>অনলাইন ফর্ম জমা নেওয়া এখন বন্ধ আছে।</h1>
             <p> ফর্ম জমা দেওয়ার শুরু হবে ১৬ ই আগস্ট, ২০২৪ থেকে এবং চলবে ১ লা সেপ্টেম্বর, ২০২৪ পর্যন্ত।</p>
         </div>
         
+        <h1>ভিডিও পাঠানোর জন্য নিজের বিভাগ ও বিষয় অনুযায়ী হোয়াটসঅ্যাপ গ্রুপে জয়েন করুন</h1>
 
-        <div class="content aform" id="content">
+    <button class="collapsible">ক বিভাগ</button>
+    <div class="content">
+        <a href="https://chat.whatsapp.com/IHD1FacUp6c0LHwLQHo48I" target="_blank">ক বিভাগ - রবীন্দ্রসঙ্গীত <i class="fab fa-whatsapp"></i></a>
+        <a href="https://chat.whatsapp.com/Gx7UCumTiulLsAppDgejQ5" target="_blank">ক বিভাগ - নজরুল গীতি <i class="fab fa-whatsapp"></i></a>
+        <a href="https://chat.whatsapp.com/B5zrJWXPDEiFN6nBXVAjrd" target="_blank">ক বিভাগ - বাংলা ছড়ার গান <i class="fab fa-whatsapp"></i></a>
+        <a href="https://chat.whatsapp.com/FJsnajrWjya11LFvRHgcS7" target="_blank">ক বিভাগ - আবৃত্তি <i class="fab fa-whatsapp"></i></a>
+        <a href="https://chat.whatsapp.com/EUKxIz7iqPFE2nPpfYfL34" target="_blank">ক বিভাগ - একক নৃত্য <i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <button class="collapsible">খ বিভাগ</button>
+    <div class="content">
+        <a href="https://chat.whatsapp.com/GHfZsCZJbfwH8qXdQiOgLi" target="_blank">খ বিভাগ - রবীন্দ্রসঙ্গীত <i class="fab fa-whatsapp"></i></a>
+        <a href="https://chat.whatsapp.com/C1gzR5wqYIMEkt6uy0fQ4u" target="_blank">খ বিভাগ - নজরুল গীতি <i class="fab fa-whatsapp"></i></a>
+        <a href="https://chat.whatsapp.com/H55ffFoeI7P5Qtl7sE2HMd" target="_blank">খ বিভাগ - বাংলা আধুনিক গান <i class="fab fa-whatsapp"></i></a>
+        <a href="https://chat.whatsapp.com/DS5PQhKQo3oB42Yk22fEIz" target="_blank">খ বিভাগ - আবৃত্তি <i class="fab fa-whatsapp"></i></a>
+        <a href="https://chat.whatsapp.com/LnxggNPyhgu41Ro7CiM8Xs" target="_blank">খ বিভাগ - একক নৃত্য <i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <button class="collapsible">গ বিভাগ</button>
+    <div class="content">
+        <a href="https://chat.whatsapp.com/DO4stlq1VfMExXjpm4wKGO" target="_blank">গ বিভাগ - রবীন্দ্রসঙ্গীত <i class="fab fa-whatsapp"></i></a>
+        <a href="https://chat.whatsapp.com/HKlBZBKCu602BVdFbIvJuj" target="_blank">গ বিভাগ - নজরুল গীতি <i class="fab fa-whatsapp"></i></a>
+        <a href="https://chat.whatsapp.com/G5gOFxmYYr2Az6pIYLrr68" target="_blank">গ বিভাগ - বাংলা আধুনিক গান <i class="fab fa-whatsapp"></i></a>
+        <a href="https://chat.whatsapp.com/Hdz2wG7XUID0aZjEaPfi63" target="_blank">গ বিভাগ - আবৃত্তি <i class="fab fa-whatsapp"></i></a>
+        <a href="https://chat.whatsapp.com/G1fxF7dtlHKLf6OA62f1KF" target="_blank">গ বিভাগ - একক নৃত্য <i class="fab fa-whatsapp"></i></a>
+    </div>
+
+
+
+        <div class="content aform invisible" id="content">
             <h2 onclick="openForm()">
                 অনলাইন ফর্মের মাধ্যমে নাম নথিভুক্ত করুন
             </h2>
@@ -167,7 +241,7 @@
 
 
         <!-- General Rules Section -->
-        <div class="general-rules">
+        <div class="general-rules invisible">
             <h2>নিয়মাবলী</h2>
             <p></p>
             <ol>
@@ -577,6 +651,30 @@
 
         // Run the maintenance check on page load
         window.onload = checkMaintenance;
+    </script>
+    <script>
+        document.querySelectorAll(".collapsible").forEach(button => {
+            button.addEventListener("click", () => {
+                // Toggle current button
+                button.classList.toggle("active");
+                const content = button.nextElementSibling;
+
+                // Hide all other content sections
+                document.querySelectorAll(".content").forEach(otherContent => {
+                    if (otherContent !== content) {
+                        otherContent.style.display = "none";
+                        otherContent.previousElementSibling.classList.remove("active");
+                    }
+                });
+
+                // Toggle the clicked content
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        });
     </script>
 </body>
 </html>
