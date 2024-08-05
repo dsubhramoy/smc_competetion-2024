@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Data Processor</title>
+    <style>
+          body {
+            font-family: Arial, sans-serif;
+            width: 100%;
+            background-color: #dd800d;
+            overflow: auto;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            width: 100%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        h1{
+            color: white;
+        }
+
+        input[type="file"] {
+            display: block;
+            margin: 20px ;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #bdbaba;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        input[type="file"]:hover {
+            border-color: #d7cd06;
+        }
+
+        input[type="file"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+            background-color: #3d8a43;
+        }
+        select {
+            display: block;
+            width: 300px;
+            margin: 5px;
+            padding: 5px;
+            font-size: 16px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #bdbaba;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        select:hover {
+            background-color: #d7cd06;
+        }
+
+        select:focus {
+            border-color: #4CAF50;
+            background-color: #8b8e8c;
+        }
+
+        button {
+            display: block;
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #2e0303;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+        }
+        .dwnloadBtn{
+            display: none;
+        }
+        .selection{
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            display: flex;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .dropdowns-container {
+            display: flex;
+            justify-content: center;
+            
+            margin-bottom: 10px; /* Space between dropdowns and buttons */
+        }
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-family: Arial, sans-serif;
+            overflow-x: auto;
+            display: none;
+            font-size: 15px;
+        }
+        
+        th, td {
+            border: 1px solid #ddd; /* Lighter border for a more subtle look */
+            padding: 12px; /* Increased padding for better readability */
+            text-align: left;
+        }
+        
+        th {
+            background-color: #4CAF50; /* Darker green background for header */
+            color: white; /* White text color for header */
+            font-weight: bold; /* Bold font for headers */
+        }
+        tr{
+            background-color: #ffffff;
+        }
+        tr:hover {
+            background-color: #ddd; /* Light grey background on row hover */
+        }
+        
+        caption {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        
+        .error {
+            background-color: #9a2c2c; /* Light red background for errors */
+            color: #ffffff; /* Dark red text color for errors */
+            font-weight: bold;
+        }
+        
+        .valid {
+            background-color: #25a743; /* Light green background for valid entries */
+            color: #ffffff; /* Dark green text color for valid entries */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>সাংস্কৃতিক প্রতিযোগিতা - ২০২৪</h1>
+            <h2>(প্রাথমিক পর্ব - অনলাইন মাধ্যম, চূড়ান্ত পর্ব - অফলাইন মাধ্যম)</h2>
+            <h2>আয়োজক - সুরলহরী মিউজিক কলেজ, বোহার, পূর্ব বর্ধমান</h2>
+        </div>
+    </header>
+    <div style="display: flex; justify-content: center;">
+        <input type="file" id="fileInput" accept=".xlsx, .xls" />
+        <button onclick="processFile()">Process File</button>
+    </div>
+    <div  id=dropdowns style="visibility: hidden;">
+        <div class="dropdowns-container">
+            <select id="dropdown1">
+                <option value="সমগ্র তালিকা">সমগ্র তালিকা</option>
+                <option value="বিভাগ - ক">বিভাগ - ক</option>
+                <option value="বিভাগ - খ">বিভাগ - খ</option>
+                <option value="বিভাগ - গ">বিভাগ - গ</option>
+            </select>
+            <select id="dropdown2">
+                <option value="সমগ্র তালিকা">সমগ্র তালিকা</option>
+                <option value="রবীন্দ্রসঙ্গীত">রবীন্দ্রসঙ্গীত</option>
+                <option value="নজরুল গীতি">নজরুল গীতি</option>
+                <option value="বাংলা ছড়ার গান/বাংলা আধুনিক গান">বাংলা ছড়ার গান/বাংলা আধুনিক গান</option>
+                <option value="বাংলা লোকসঙ্গীত">বাংলা লোকসঙ্গীত</option>
+                <option value="আবৃত্তি">আবৃত্তি</option>
+                <option value="একক নৃত্য">একক নৃত্য</option>
+                <option value="তবলা">তবলা</option>
+                <option value="অঙ্কন">অঙ্কন</option>
+            </select>
+        </div>
+        <div class="buttons-container">
+            <button onclick="handleClick()">Submit</button>
+            <button class ="dwnloadBtn" id="downloadB" onclick="downloadCsv()">Download CSV</button>
+        </div>
+    </div>
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>কোড নং</th>
+                <th>প্রতিযোগীর নাম</th>
+                <th>পিতা/অবিভাবকের নাম</th>
+                <th>ঠিকানা</th>
+                <th>জন্ম তারিখ</th>
+                <th>বয়স</th>
+                <th>মোবাইল নাম্বার</th>
+                <th>হোয়াটসঅ্যাপ নাম্বার</th>
+                <th>বিভাগ</th>
+                <th>রবীন্দ্রসঙ্গীত</th>
+                <th>নজরুল গীতি</th>
+                <th>বাংলা ছড়ার গান/বাংলা আধুনিক গান</th>
+                <th>বাংলা লোকসঙ্গীত</th>
+                <th>আবৃত্তি</th>
+                <th>একক নৃত্য</th>
+                <th>তবলা</th>
+                <th>অঙ্কন</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be populated here -->
+        </tbody>
+    </table>
+    <table id="dataTable2">
+        <thead>
+            <tr>
+                <th>কোড নং</th>
+                <th>প্রতিযোগীর নাম</th>
+                <th>পিতা/অবিভাবকের নাম</th>
+                <th>ঠিকানা</th>
+                <th>জন্ম তারিখ</th>
+                <th>বয়স</th>
+                <th>মোবাইল নাম্বার</th>
+                <th>হোয়াটসঅ্যাপ নাম্বার</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be populated here -->
+        </tbody>
+    </table>
+    
+    <!-- Include SheetJS (xlsx) library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
