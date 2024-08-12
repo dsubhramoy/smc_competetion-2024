@@ -1,6 +1,8 @@
 let masterData;
 let bibhag;
 let bishoy;
+let possibleValues;
+let statData;
 function handleClick() {
     // Get the selected values from the dropdowns
     
@@ -14,12 +16,14 @@ function handleClick() {
 }
 
 function processSelections(value1, value2) {
+    displayData(masterData);
     const dataTable1 =document.getElementById('dataTable');
     const dataTable2 =document.getElementById('dataTable2');
-    if(value1==="সমগ্র তালিকা" && (value2=="সমগ্র তালিকা" || value2=="--")){
+    if(value1==="সমগ্র তালিকা" && (value2=="সমগ্র তালিকা")){
         console.log(masterData);
         displayData(masterData);
         dataTable1.style.display = 'block';
+        dataTable2.style.display='none';
         bibhag=value1;
         bishoy=value2;
     }
@@ -105,7 +109,7 @@ function processFile() {
 
         // Display data (you can modify this part to suit your needs)
         const columnName = "বিষয়";
-        const possibleValues = [
+        possibleValues = [
             "রবীন্দ্রসঙ্গীত",
             "নজরুল গীতি",
             "বাংলা ছড়ার গান/বাংলা আধুনিক গান",
@@ -123,10 +127,87 @@ function processFile() {
         }));
         masterData = addDOB(dataWithID);
 
-        //console.log(ageData);
+        statData = generateStat();
+        const button = document.getElementById('toggle-button');
+        button.style.display="Block";
+        generateTable(statData);
+        
+        
         
     };
     reader.readAsArrayBuffer(file);
+}
+
+
+function generateTable(statData) {
+    const tableBody = document.getElementById('table-body');
+    tableBody.innerHTML = ''; // Clear any existing rows
+
+    for (const category in statData) {
+        if (statData.hasOwnProperty(category)) {
+            const row = document.createElement('tr');
+
+            // Category cell
+            const categoryCell = document.createElement('td');
+            categoryCell.textContent = category;
+            row.appendChild(categoryCell);
+
+            // Subject cells
+            const subjects = [
+                "রবীন্দ্রসঙ্গীত",
+                "নজরুল গীতি",
+                "বাংলা ছড়ার গান/বাংলা আধুনিক গান",
+                "বাংলা লোকসঙ্গীত",
+                "আবৃত্তি",
+                "একক নৃত্য",
+                "তবলা",
+                "অঙ্কন"
+            ];
+
+            subjects.forEach(subject => {
+                const cell = document.createElement('td');
+                cell.textContent = statData[category][subject];
+                row.appendChild(cell);
+            });
+
+            tableBody.appendChild(row);
+        }
+    }
+}
+
+function toggleTable() {
+    const table = document.getElementById('datatablestat');
+    const button = document.getElementById('toggle-button');
+    if (table.style.display === 'none') {
+        table.style.display = 'table';
+        button.textContent = 'Hide Overview';
+    } else {
+        table.style.display = 'none';
+        button.textContent = 'Show Overview';
+    }
+}
+
+
+function generateStat(){
+    const result = {};
+    for (const entry of masterData) {
+        const category = entry["বিভাগ"];
+
+        if (!result[category]) {
+            result[category] = {};
+            for (const subject of possibleValues) {
+                result[category][subject] = 0;
+            }
+        }
+
+        // Update counts for subjects
+        for (const subject of possibleValues) {
+            if (entry[subject] === "Y") {
+                result[category][subject]++;
+            }
+        }
+    }
+    return result
 }
 
 function cleanAndFilterData(data) {

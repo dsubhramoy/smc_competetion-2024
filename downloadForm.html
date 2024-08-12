@@ -159,6 +159,10 @@
             color: #ffffff; /* Dark green text color for valid entries */
             font-weight: bold;
         }
+        #datatablestat {
+            width: 50%;
+            display: none; /* Initially hide the table */
+        }
     </style>
 </head>
 <body>
@@ -172,7 +176,9 @@
     <div style="display: flex; justify-content: center;">
         <input type="file" id="fileInput" accept=".xlsx, .xls" />
         <button onclick="processFile()">Process File</button>
+        <button onclick="toggleTable()" id="toggle-button" style="display: none;">Show Overview</button>
     </div>
+
     <div  id=dropdowns style="visibility: hidden;">
         <div class="dropdowns-container">
             <select id="dropdown1">
@@ -197,6 +203,26 @@
             <button onclick="handleClick()">Submit</button>
             <button class ="dwnloadBtn" id="downloadB" onclick="downloadCsv()">Download CSV</button>
         </div>
+    </div>
+    <div style="justify-content: center; justify-items: center;display: flex;">
+        <table id="datatablestat">
+            <thead>
+                <tr>
+                    <th>বিভাগ</th>
+                    <th>রবীন্দ্রসঙ্গীত</th>
+                    <th>নজরুল গীতি</th>
+                    <th>বাংলা ছড়ার গান/বাংলা আধুনিক গান</th>
+                    <th>বাংলা লোকসঙ্গীত</th>
+                    <th>আবৃত্তি</th>
+                    <th>একক নৃত্য</th>
+                    <th>তবলা</th>
+                    <th>অঙ্কন</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- Table rows will be inserted here -->
+            </tbody>
+        </table>
     </div>
     <table id="dataTable">
         <thead>
