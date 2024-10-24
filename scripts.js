@@ -181,7 +181,7 @@ function toggleTable() {
     if (table.style.display === 'none') {
         table.style.display = 'table';
         button.textContent = 'Hide Overview';
-    } else {
+    } else  {
         table.style.display = 'none';
         button.textContent = 'Show Overview';
     }
@@ -330,19 +330,24 @@ function splitColumnIntoFlags(data, columnName, values) {
 
 // Calculate age based on birthdate and current date
 function calculateAge(birthDate, currentDate) {
-    // Total days between the two dates
-    const ageDifMs = currentDate - birthDate;
-    const totalDays = Math.floor(ageDifMs / (1000 * 60 * 60 * 24));
-    
-    // Calculate years and remaining days
-    var years = Math.floor(totalDays / 365.25); // Approximate years accounting for leap years
-    
-    const daysInYears = Math.floor(years * 365.25);
-    const remainingDays = totalDays - daysInYears;
-    if(years === -1){
-        years = 0
+    console.log(birthDate,currentDate)
+    let years = currentDate.getFullYear() - birthDate.getFullYear();
+    let months = currentDate.getMonth() - birthDate.getMonth();
+    let days = currentDate.getDate() - birthDate.getDate();
+
+    // Adjust for negative days
+    if (days < 0) {
+        months -= 1;
+        days += new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
     }
-    return `${years}Y ${String(remainingDays)}D`;
+
+    // Adjust for negative months
+    if (months < 0) {
+        years -= 1;
+        months += 12;
+    }
+
+    return `${years}Y ${months}M ${days}D`;
 }
 function daysINYear(currentDate, birthDate){
     const ageDifMs = currentDate - birthDate;
@@ -358,7 +363,7 @@ function formatDateToDDMMYYYY(date) {
 
 function addDOB(data){
     return data.map(row => {
-        const currentDate = new Date("01/09/2024");
+        const currentDate = new Date("09/01/2024");
         var dob = excelDateToJSDate(row["জন্ম তারিখ"]);
         const age = calculateAge(dob, currentDate);
         const ddb=formatDateToDDMMYYYY(dob);
