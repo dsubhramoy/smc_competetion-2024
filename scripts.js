@@ -409,14 +409,22 @@ function downloadCsv() {
     // Convert CSV rows to a string
     const csvString = csvRows.join('\n');
 
-    // Create a blob and link for download
-    const blob = new Blob([csvString], { type: 'text/csv' });
+
+
+    // Prepend BOM for UTF-8
+    const bom = '\uFEFF';
+    const blob = new Blob([bom + csvString], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${bibhag}_${bishoy}.csv`;
-    a.click();
 
-    // Clean up
-    URL.revokeObjectURL(url);
+    // Properly encode the filename
+    const filename = `${bibhag}_${bishoy}.csv`;
+    a.download = filename;
+
+    document.body.appendChild(a); // Append to body to ensure it's part of the document
+    a.click();
+    document.body.removeChild(a); // Clean up
+    URL.revokeObjectURL(url); // Release the object URL
+
 }
